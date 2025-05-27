@@ -51,7 +51,7 @@ entrada = {
 }
 
 dados = pd.DataFrame([entrada], columns=colunas)
-dados_normalizados = scaler.transform(dados)
+dados_normalizados = scaler.transform(dados.to_numpy())
 
 # Predição
 if st.button("🔍 Prever"):
