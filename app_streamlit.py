@@ -4,8 +4,8 @@ import pandas as pd
 import joblib
 
 # Carregar modelo e scaler
-modelo = joblib.load("modelo/modelo_randomforest_diabetes.pkl")
-scaler = joblib.load("modelo/scaler.pkl")
+modelo = joblib.load("modelo_randomforest_diabetes.pkl")
+scaler = joblib.load("scaler.pkl")
 
 st.set_page_config(page_title="Preditor de Diabetes", page_icon="🩺")
 st.title("🩺 Preditor de Diabetes")
