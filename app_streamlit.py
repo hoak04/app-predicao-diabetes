@@ -4,8 +4,8 @@ import pandas as pd
 import joblib
 
 # Carregar modelo e scaler
-modelo = joblib.load("modelo_randomforest_diabetes.pkl")
-scaler = joblib.load("scaler.pkl")
+modelo = joblib.load("modelo/modelo_randomforest_diabetes.pkl")
+scaler = joblib.load("modelo/scaler.pkl")
 
 st.set_page_config(page_title="Preditor de Diabetes", page_icon="🩺")
 st.title("🩺 Preditor de Diabetes")
@@ -30,7 +30,14 @@ smoke_former = 1 if smoking == "Fumava anteriormente" else 0
 smoke_never = 1 if smoking == "Nunca fumou" else 0
 smoke_current = 1 if smoking == "Fuma atualmente" else 0
 
-dados = pd.DataFrame([{
+# Garantir colunas na mesma ordem e estrutura do treino
+colunas = [
+    "Age", "BMI", "HbA1c", "Fasting_Blood_Glucose",
+    "Gender_Male", "Hypertension_Yes", "Heart_Disease_Yes",
+    "Smoking_History_current", "Smoking_History_former", "Smoking_History_never"
+]
+
+entrada = {
     "Age": age,
     "BMI": bmi,
     "HbA1c": hba1c,
@@ -38,13 +45,16 @@ dados = pd.DataFrame([{
     "Gender_Male": genero_m,
     "Hypertension_Yes": hipertensao,
     "Heart_Disease_Yes": doenca_cardiaca,
+    "Smoking_History_current": smoke_current,
     "Smoking_History_former": smoke_former,
-    "Smoking_History_never": smoke_never,
-    "Smoking_History_current": smoke_current
-}])
+    "Smoking_History_never": smoke_never
+}
 
+dados = pd.DataFrame([entrada], columns=colunas)
 dados_normalizados = scaler.transform(dados)
 
+# Predição
 if st.button("🔍 Prever"):
     resultado = modelo.predict(dados_normalizados)[0]
     st.success("✅ Resultado: **Diabetes detectado!**" if resultado == 1 else "🟢 Resultado: **Sem sinais de diabetes.**")
+
