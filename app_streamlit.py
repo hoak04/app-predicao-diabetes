@@ -56,6 +56,8 @@ colunas_esperadas = [
 
 # Garantir ordem e presença das colunas
 dados = dados.reindex(columns=colunas_esperadas, fill_value=0)
+st.write("Número de colunas:", dados.shape[1])
+st.write("Nomes das colunas:", dados.columns.tolist())
 dados_normalizados = scaler.transform(dados.to_numpy())
 
 # Predição
