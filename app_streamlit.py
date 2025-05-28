@@ -64,3 +64,5 @@ dados_normalizados = scaler.transform(dados.to_numpy())
 if st.button("🔍 Prever"):
     resultado = modelo.predict(dados_normalizados)[0]
     st.success("✅ Resultado: **Diabetes detectado!**" if resultado == 1 else "🟢 Resultado: **Sem sinais de diabetes.**")
+
+print(scaler.mean_.shape[0])
