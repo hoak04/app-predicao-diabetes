@@ -49,11 +49,6 @@ entrada = {
 dados = pd.DataFrame([entrada])
 colunas_esperadas = list(scaler.feature_names_in_)
 dados = dados.reindex(columns=colunas_esperadas, fill_value=0)
-if hasattr(scaler, 'feature_names_in_'):
-        st.write("Features do scaler (provavelmente as mesmas do modelo):", scaler.feature_names_in_)
-        colunas_esperadas = scaler.feature_names_in_
-    else:
-        st.error("Não foi possível determinar as features esperadas")
 st.write("Colunas finais:", dados.columns.tolist())
 st.write("Shape final:", dados.shape)
 dados_normalizados = scaler.transform(dados.to_numpy())
