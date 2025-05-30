@@ -26,13 +26,6 @@ smoking = st.selectbox("Histórico de Tabagismo", ["Nunca fumou", "Fuma atualmen
 genero_m = 1 if gender == "Masculino" else 0
 hipertensao = 1 if hypertension == "Sim" else 0
 doenca_cardiaca = 1 if heart_disease == "Sim" else 0
-smoking_history = {
-    "Nunca fumou": [0, 0],
-    "Fumava anteriormente": [1, 0],
-    "Fuma atualmente": [0, 1]
-}
-smoke_encoded = smoking_history[smoking]
-
 smoke_current = 1 if smoking == "Fuma atualmente" else 0
 smoke_former = 1 if smoking == "Fumava anteriormente" else 0
 smoke_never = 1 if smoking == "Nunca fumou" else 0
