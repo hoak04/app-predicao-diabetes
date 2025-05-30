@@ -43,8 +43,7 @@ entrada = {
     "Smoking_History_former": smoke_former,
     "Smoking_History_never": smoke_never
 }
-st.write("Features esperadas pelo modelo:", modelo.feature_names_in_)
-st.write("Features que estamos enviando:", dados.columns.tolist())
+
 # Criar DataFrame e alinhar com as colunas do scaler
 dados = pd.DataFrame([entrada])
 colunas_esperadas = list(scaler.feature_names_in_)
