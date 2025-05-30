@@ -50,6 +50,8 @@ colunas_esperadas = list(scaler.feature_names_in_)
 dados = dados.reindex(columns=colunas_esperadas, fill_value=0)
 st.write("Colunas finais:", dados.columns.tolist())
 st.write("Shape final:", dados.shape)
+st.write("Modelo espera:", modelo.n_features_in_)
+st.write("Extras:", list(set(df.columns) - set(modelo.feature_names_in_)))
 dados_normalizados = scaler.transform(dados.to_numpy())
 
 
