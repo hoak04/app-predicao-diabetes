@@ -33,11 +33,11 @@ smoking_history = {
 }
 smoke_encoded = smoking_history[smoking]
 
-# Dados do usuário
-# Codificação do tabagismo (deve vir ANTES do dicionário 'entrada')
 smoke_current = 1 if smoking == "Fuma atualmente" else 0
 smoke_former = 1 if smoking == "Fumava anteriormente" else 0
 smoke_never = 1 if smoking == "Nunca fumou" else 0
+
+# Dados do usuário
 
 entrada = {
     "Age": age,
