@@ -51,6 +51,8 @@ dados = dados.reindex(columns=colunas_esperadas, fill_value=0)
 st.write("Colunas finais:", dados.columns.tolist())
 st.write("Shape final:", dados.shape)
 dados_normalizados = scaler.transform(dados.to_numpy())
+st.write("Features esperadas pelo modelo:", modelo.feature_names_in_)
+st.write("Features que estamos enviando:", dados.columns.tolist())
 
 
 # Predição
