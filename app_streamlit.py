@@ -1,68 +1,69 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import numpy as np
 
 # 1. Carregar modelo e scaler
 try:
     modelo = joblib.load("modelo/modelo_randomforest_diabetes.pkl")
     scaler = joblib.load("modelo/scaler.pkl")
 except Exception as e:
-    st.error(f"Erro ao carregar os arquivos: {str(e)}")
+    st.error(f"Erro ao carregar modelo: {str(e)}")
     st.stop()
 
-# 2. Verificar features do scaler
+# 2. Obter features esperadas
 if not hasattr(scaler, 'feature_names_in_'):
-    st.error("O scaler não contém informações das features originais!")
+    st.error("Scaler não contém informações das features originais!")
     st.stop()
 
 colunas_esperadas = scaler.feature_names_in_.tolist()
-st.sidebar.write(f"🔍 O modelo espera {len(colunas_esperadas)} features:")
+required_features = len(colunas_esperadas)
+st.sidebar.write(f"🔢 O modelo requer {required_features} features:")
 st.sidebar.write(colunas_esperadas)
 
 # 3. Formulário de entrada
-with st.form("form_predicao"):
-    st.header("Dados do Paciente")
+with st.form("diabetes_form"):
+    st.header("Formulário de Avaliação")
     
-    # Dados básicos
-    age = st.slider("Idade", 1, 120, 45)
-    bmi = st.number_input("IMC", min_value=10.0, max_value=60.0, value=28.5)
-    glucose = st.number_input("Glicemia em jejum (mg/dL)", min_value=50, max_value=300, value=100)
-    
-    # Dados categóricos
-    gender = st.selectbox("Sexo", ["Feminino", "Masculino"])
-    hypertension = st.selectbox("Hipertensão", ["Não", "Sim"])
-    
-    submit = st.form_submit_button("Prever Diabetes")
-
-if submit:
-    # 4. Criar dicionário de entrada APENAS com as 24 features esperadas
+    # Dados básicos (exemplos - adapte para suas 24 features)
     entrada = {
-        "Age": age,
-        "BMI": bmi,
-        "Fasting_Blood_Glucose": glucose,
-        "Sex_Male": 1 if gender == "Masculino" else 0,
-        "Hypertension_Yes": 1 if hypertension == "Sim" else 0,
-        
-        # Preencher outras features com valores padrão
-        **{col: 0 for col in colunas_esperadas if col not in ["Age", "BMI", "Fasting_Blood_Glucose", "Sex_Male", "Hypertension_Yes"]}
+        'Age': st.slider("Idade", 20, 100, 45),
+        'BMI': st.number_input("IMC", 15.0, 50.0, 25.0),
+        'Fasting_Blood_Glucose': st.number_input("Glicemia (mg/dL)", 70, 300, 100),
+        # Adicione TODAS as 24 features aqui conforme listado em colunas_esperadas
     }
     
-    # 5. Garantir a ordem exata e número correto de features
+    # Preencher automaticamente features não coletadas
+    for col in colunas_esperadas:
+        if col not in entrada:
+            entrada[col] = 0  # Valor padrão para features não coletadas
+    
+    submit = st.form_submit_button("Realizar Predição")
+
+# 4. Processamento
+if submit:
+    # Criar DataFrame com ordem correta
     dados = pd.DataFrame([entrada])[colunas_esperadas]
     
-    # 6. Verificação final
-    st.write("### Dados enviados ao modelo:")
+    # Verificação crítica
+    st.write("### Dados enviados:")
     st.write(dados)
     st.write(f"Shape dos dados: {dados.shape}")
     
-    if dados.shape[1] != 24:
-        st.error(f"ERRO: Número incorreto de features ({dados.shape[1]}). Deveria ser 24!")
+    if dados.shape[1] != required_features:
+        missing = set(colunas_esperadas) - set(dados.columns)
+        st.error(f"ERRO CRÍTICO: Faltam {len(missing)} features!")
+        st.error(f"Features faltantes: {missing}")
         st.stop()
     
-    # 7. Predição
+    # Predição
     try:
         dados_normalizados = scaler.transform(dados)
+        if dados_normalizados.shape[1] != required_features:
+            st.error(f"Erro na normalização: shape {dados_normalizados.shape}")
+            st.stop()
+            
         resultado = modelo.predict(dados_normalizados)[0]
-        st.success("✅ Sem diabetes" if resultado == 0 else "⚠️ Risco de diabetes")
+        st.success("✅ Baixo risco" if resultado == 0 else "⚠️ Alto risco de diabetes")
     except Exception as e:
         st.error(f"Falha na predição: {str(e)}")
