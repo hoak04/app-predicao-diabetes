@@ -56,7 +56,11 @@ dados_normalizados = scaler.transform(dados.to_numpy())
 # Predição
 
 if st.button("🔍 Prever"):
-    st.write("Features esperadas pelo modelo:", modelo.feature_names_in_)
-st.write("Features esperadas pelo scaler:", scaler.feature_names_in_)
-    resultado = modelo.predict(dados_normalizados)[0]
-    st.success("✅ Resultado: **Diabetes detectado!**" if resultado == 1 else "🟢 Resultado: **Sem sinais de diabetes.**")
+    try:
+        dados_normalizados = scaler.transform(dados)
+        resultado = modelo.predict(dados_normalizados)[0]
+        st.success("✅ Resultado: **Diabetes detectado!**" if resultado == 1 else "🟢 Resultado: **Sem sinais de diabetes.**")
+    except Exception as e:
+        st.error(f"Erro na predição: {str(e)}")
+        st.write("Dados enviados:", dados)
+        st.write("Shape dos dados:", dados.shape)
