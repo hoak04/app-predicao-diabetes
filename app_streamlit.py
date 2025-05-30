@@ -49,7 +49,10 @@ entrada = {
 dados = pd.DataFrame([entrada])
 colunas_esperadas = list(scaler.feature_names_in_)
 dados = dados.reindex(columns=colunas_esperadas, fill_value=0)
-st.write("Features esperadas pelo modelo:", modelo.feature_names_in_)
+if hasattr(modelo, 'feature_names_in_'):
+    st.write("Features esperadas pelo modelo:", modelo.feature_names_in_)
+else:
+    st.warning("O modelo não tem informações sobre os nomes das features")
 st.write("Features que estamos enviando:", dados.columns.tolist())
 st.write("Colunas finais:", dados.columns.tolist())
 st.write("Shape final:", dados.shape)
