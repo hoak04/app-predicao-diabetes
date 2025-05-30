@@ -2,6 +2,8 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import sklearn
+st.write("Versão do scikit-learn:", sklearn.__version__)
 
 # Carregar modelo e scaler
 modelo = joblib.load("modelo/modelo_randomforest_diabetes.pkl")
