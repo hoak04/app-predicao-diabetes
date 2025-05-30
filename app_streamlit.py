@@ -2,10 +2,6 @@
 import streamlit as st
 import pandas as pd
 import joblib
-if hasattr(modelo, 'feature_names_in_'):
-    st.write("Features esperadas pelo modelo:", modelo.feature_names_in_)
-else:
-    st.warning("O modelo não tem informações sobre os nomes das features")
 
 # Carregar modelo e scaler
 modelo = joblib.load("modelo/modelo_randomforest_diabetes.pkl")
