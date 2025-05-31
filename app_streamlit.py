@@ -55,6 +55,12 @@ df = pd.DataFrame([entrada])
 colunas_esperadas = list(entrada.keys())
 df = df.reindex(columns=colunas_esperadas)
 
+colunas_modelo = 24  # valor correto
+colunas_atuais = df.shape[1]
+
+if colunas_atuais > colunas_modelo:
+    st.error(f"⚠️ Você está enviando {colunas_atuais} colunas, mas o modelo espera {colunas_modelo}.")
+    
 # Verificações
 st.subheader("🔎 Verificação")
 st.write("Colunas enviadas:", df.columns.tolist())
@@ -66,7 +72,5 @@ try:
         pred = modelo.predict(dados_normalizados)[0]
         st.success("✅ Diabetes detectado!" if pred == 1 else "🟢 Sem sinais de diabetes.")
 except Exception as e:
-    st.error(f"Erro na predição: {e}")
-
     st.error(f"Erro na predição: {e}")
 
