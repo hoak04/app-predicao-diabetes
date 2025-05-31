@@ -29,6 +29,8 @@ bp_dia = st.number_input("Pressão Diastólica", 40, 130, 75)
 gender = st.selectbox("Sexo", ["Masculino", "Feminino"])
 sexo = 1 if gender == "Masculino" else 0
 
+hba1c = st.number_input("HbA1c", 3.0, 15.0, 5.8)
+
 # Criar dicionário com os dados
 entrada = {
     "Age": age,
@@ -71,7 +73,7 @@ colunas_ordenadas = [
     "Ethnicity_White", "Ethnicity_Black", "Ethnicity_Hispanic",
     "Physical_Activity_Level_Low", "Physical_Activity_Level_Moderate",
     "Alcohol_Consumption_None", "Alcohol_Consumption_Moderate",
-    "Smoking_Status_Former", "Smoking_Status_Never"
+    "Smoking_Status_Former", "Smoking_Status_Never","HbA1c"
 ]
 
 
