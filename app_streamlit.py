@@ -55,7 +55,15 @@ entrada = {
     "HbA1c": hba1c
 }
 
-df = pd.DataFrame([entrada])
+df = df.reindex(columns=colunas_ordenadas)
+
+# Verificar diferença
+colunas_modelo = 24  # valor correto
+colunas_atuais = df.shape[1]
+
+if colunas_atuais > colunas_modelo:
+    st.error(f"⚠️ Você está enviando {colunas_atuais} colunas, mas o modelo espera {colunas_modelo}.")
+
 
 # Ordem exata das colunas do treino
 colunas_ordenadas = [
