@@ -50,7 +50,7 @@ smoking_former = 1 if smoking == "Former" else 0
 # Dicionário de entrada na ORDEM CORRETA
 entrada = {
     "Age": age,
-    "Sex": 1 if sex == "Masculino" else 0,
+    "Sex_Male": 1 if sex == "Masculino" else 0,
     "Ethnicity_White": 1 if ethnicity == "White" else 0,  # Corrigido de "Ethnicity_Write"
     "Ethnicity_Black": 1 if ethnicity == "Black" else 0,
     "Ethnicity_Hispanic": 1 if ethnicity == "Hispanic" else 0,
@@ -79,7 +79,7 @@ entrada = {
 # Ordem EXATA das features conforme especificado
 ordem_features = [
     "Age",
-    "Sex",
+    "Sex_Male",
     "Ethnicity_White",
     "Ethnicity_Black",
     "Ethnicity_Hispanic",
