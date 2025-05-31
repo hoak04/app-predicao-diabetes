@@ -75,11 +75,13 @@ entrada = {
     "Family_History_of_Diabetes": 1 if family_history else 0,
     "Previous_Gestational_Diabetes": 1 if gestational_diabetes else 0
 }
-
+df = pd.DataFrame([entrada_corrigida])
+if "Sex" in df.columns:
+    df = df.drop(columns=["Sex"])
 # Ordem EXATA das features conforme especificado
 ordem_features = [
     "Age",
-    "Sex_Male",
+    "Sex",
     "Ethnicity_White",
     "Ethnicity_Black",
     "Ethnicity_Hispanic",
