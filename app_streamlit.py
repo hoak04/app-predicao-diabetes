@@ -52,8 +52,20 @@ entrada = {
 }
 
 df = pd.DataFrame([entrada])
-colunas_esperadas = list(entrada.keys())
-df = df.reindex(columns=colunas_esperadas)
+colunas_ordenadas = [
+    "Age", "BMI", "Waist_Circumference", "Fasting_Blood_Glucose", 
+    "Blood_Pressure_Systolic", "Blood_Pressure_Diastolic",
+    "Cholesterol_Total", "Cholesterol_HDL", "Cholesterol_LDL", "GGT",
+    "Serum_Urate", "Dietary_Intake_Calories", "Family_History_of_Diabetes",
+    "Previous_Gestational_Diabetes", "Sex_Male", 
+    "Ethnicity_White", "Ethnicity_Black", "Ethnicity_Hispanic",
+    "Physical_Activity_Level_Low", "Physical_Activity_Level_Moderate",
+    "Alcohol_Consumption_None", "Alcohol_Consumption_Moderate",
+    "Smoking_Status_Former", "Smoking_Status_Never", "HbA1c"
+]
+
+df = df.reindex(columns=colunas_ordenadas)
+
 
 # Verificações
 st.subheader("🔎 Verificação")
