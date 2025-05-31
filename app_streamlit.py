@@ -105,9 +105,17 @@ ordem_features = [
     "Previous_Gestational_Diabetes"
 ]
 
+st.write("Colunas no dicionário entrada:", entrada.keys())
+st.write("Colunas em orden_features:", orden_features)
 # Cria o DataFrame na ordem correta
 df = pd.DataFrame([entrada])[ordem_features]
 
+for col in orden_features:
+    if col not in df.columns:
+        df[col] = 0  # Preenche com 0 ou outro valor padrão
+
+
+df = df[orden_feature
 # Verificação (opcional)
 st.subheader("🔎 Verificação")
 st.write("Features enviadas:", df.columns.tolist())
