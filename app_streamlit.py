@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import joblib
@@ -9,6 +8,7 @@ scaler = joblib.load("modelo/scaler.pkl")
 st.set_page_config(page_title="Preditor de Diabetes", page_icon="🩺")
 st.title("🩺 Preditor de Diabetes")
 
+# Entradas do usuário
 age = st.slider("Idade", 1, 120, 45)
 bmi = st.number_input("IMC", 10.0, 60.0, 28.5)
 waist = st.number_input("Cintura (cm)", 50.0, 200.0, 90.0)
@@ -23,71 +23,61 @@ calories = st.number_input("Calorias ingeridas", 1000, 5000, 2200)
 bp_sys = st.number_input("Pressão Sistólica", 80, 200, 120)
 bp_dia = st.number_input("Pressão Diastólica", 40, 130, 75)
 
+gender = st.selectbox("Sexo", ["Masculino", "Feminino"])
+sexo_m = 1 if gender == "Masculino" else 0
+
+# Monta o dicionário com todas as 25 colunas esperadas
 entrada = {
     "Age": age,
     "BMI": bmi,
     "Waist_Circumference": waist,
     "Fasting_Blood_Glucose": glucose,
-    "Sex": 1,
-    "Alcohol_Consumption_None": 1,
-    "Alcohol_Consumption_Moderate": 0,
-    "Smoking_Status_Never": 1,
-    "Smoking_Status_Former": 0,
-    "Physical_Activity_Level_Moderate": 1,
-    "Physical_Activity_Level_Low": 0,
-    "Family_History_of_Diabetes": 1,
-    "Previous_Gestational_Diabetes": 0,
+    "Blood_Pressure_Systolic": bp_sys,
+    "Blood_Pressure_Diastolic": bp_dia,
     "Cholesterol_Total": chol_total,
     "Cholesterol_HDL": hdl,
     "Cholesterol_LDL": ldl,
-    "HbA1c": hba1c,
     "GGT": ggt,
     "Serum_Urate": urate,
     "Dietary_Intake_Calories": calories,
+    "Family_History_of_Diabetes": 1,
+    "Previous_Gestational_Diabetes": 0,
+    "Sex_Male": sexo_m,
     "Ethnicity_White": 1,
     "Ethnicity_Black": 0,
     "Ethnicity_Hispanic": 0,
-    "Blood_Pressure_Diastolic": bp_dia,
-    "Blood_Pressure_Systolic": bp_sys
+    "Physical_Activity_Level_Low": 0,
+    "Physical_Activity_Level_Moderate": 1,
+    "Alcohol_Consumption_None": 1,
+    "Alcohol_Consumption_Moderate": 0,
+    "Smoking_Status_Former": 0,
+    "Smoking_Status_Never": 1,
+    "HbA1c": hba1c
 }
 
 df = pd.DataFrame([entrada])
+
+# Ordem exata das colunas do treino
 colunas_ordenadas = [
-    "Age",
-    "Sex",
-    "Ethnicity_White",
-    "Ethnicity_Black",
-    "Ethnicity_Hispanic",
-    "BMI",
-    "Waist_Circumference",
-    "Fasting_Blood_Glucose",
-    "HbA1c",
-    "Blood_Pressure_Systolic",
-    "Blood_Pressure_Diastolic",
-    "Cholesterol_Total",
-    "Cholesterol_HDL",
-    "Cholesterol_LDL",
-    "GGT",
-    "Serum_Urate",
-    "Physical_Activity_Level_Low",
-    "Physical_Activity_Level_Moderate",
-    "Dietary_Intake_Calories",
-    "Alcohol_Consumption_None",
-    "Alcohol_Consumption_Moderate",
-    "Smoking_Status_Never",
-    "Smoking_Status_Former",
-    "Family_History_of_Diabetes",
-    "Previous_Gestational_Diabetes"
+    "Age", "BMI", "Waist_Circumference", "Fasting_Blood_Glucose", 
+    "Blood_Pressure_Systolic", "Blood_Pressure_Diastolic",
+    "Cholesterol_Total", "Cholesterol_HDL", "Cholesterol_LDL", "GGT",
+    "Serum_Urate", "Dietary_Intake_Calories", "Family_History_of_Diabetes",
+    "Previous_Gestational_Diabetes", "Sex_Male", 
+    "Ethnicity_White", "Ethnicity_Black", "Ethnicity_Hispanic",
+    "Physical_Activity_Level_Low", "Physical_Activity_Level_Moderate",
+    "Alcohol_Consumption_None", "Alcohol_Consumption_Moderate",
+    "Smoking_Status_Former", "Smoking_Status_Never", "HbA1c"
 ]
 
 df = df.reindex(columns=colunas_ordenadas)
 
-
-# Verificações
+# Exibe colunas para depuração (opcional)
 st.subheader("🔎 Verificação")
 st.write("Colunas enviadas:", df.columns.tolist())
 st.write("Shape:", df.shape)
 
+# Normaliza e prevê
 try:
     dados_normalizados = scaler.transform(df)
     if st.button("🔍 Prever"):
@@ -95,3 +85,4 @@ try:
         st.success("✅ Diabetes detectado!" if pred == 1 else "🟢 Sem sinais de diabetes.")
 except Exception as e:
     st.error(f"Erro na predição: {e}")
+
