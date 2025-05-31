@@ -78,7 +78,7 @@ st.subheader("🔎 Verificação")
 st.write("Colunas enviadas:", df.columns.tolist())
 st.write("Shape:", df.shape)
 colunas_esperadas = modelo.colunas_ordenadas
-]
+
 st.write("✅ Esperadas pelo modelo:", list(colunas_esperadas))
 st.write("📥 Enviadas:", list(df.columns))
 st.write("❌ Diferença:", list(set(df.columns) - set(colunas_esperadas)))
