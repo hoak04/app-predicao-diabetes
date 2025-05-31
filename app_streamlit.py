@@ -44,7 +44,7 @@ entrada = {
     "Dietary_Intake_Calories": calories,
     "Family_History_of_Diabetes": 1,
     "Previous_Gestational_Diabetes": 0,
-    "Sex": sexo,  # 👈 agora está certo!
+    "Sex_Male": 1 if gender == "Masculino" else 0,
     "Ethnicity_White": 1,
     "Ethnicity_Black": 0,
     "Ethnicity_Hispanic": 0,
@@ -53,8 +53,10 @@ entrada = {
     "Alcohol_Consumption_None": 1,
     "Alcohol_Consumption_Moderate": 0,
     "Smoking_Status_Former": 0,
-    "Smoking_Status_Never": 1
+    "Smoking_Status_Never": 1,
+    "HbA1c": hba1c,
 }
+
 
 df = pd.DataFrame([entrada])
 
@@ -64,12 +66,13 @@ colunas_ordenadas = [
     "Blood_Pressure_Systolic", "Blood_Pressure_Diastolic",
     "Cholesterol_Total", "Cholesterol_HDL", "Cholesterol_LDL", "GGT",
     "Serum_Urate", "Dietary_Intake_Calories", "Family_History_of_Diabetes",
-    "Previous_Gestational_Diabetes", "Sex", 
+    "Previous_Gestational_Diabetes", "Sex_Male", 
     "Ethnicity_White", "Ethnicity_Black", "Ethnicity_Hispanic",
     "Physical_Activity_Level_Low", "Physical_Activity_Level_Moderate",
     "Alcohol_Consumption_None", "Alcohol_Consumption_Moderate",
     "Smoking_Status_Former", "Smoking_Status_Never"
 ]
+
 
 # Reordenar e normalizar
 df = df.reindex(columns=colunas_ordenadas)
