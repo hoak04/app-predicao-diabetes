@@ -74,6 +74,7 @@ entrada = {
     "Smoking_Status_Former": 1 if smoking == "Former" else 0,
     "Family_History_of_Diabetes": 1 if family_history else 0,
     "Previous_Gestational_Diabetes": 1 if gestational_diabetes else 0
+    "Sex": 1 if sex == "Masculino" else 0,
 }
 df = pd.DataFrame([entrada])
 if "Sex" in df.columns:
@@ -81,7 +82,7 @@ if "Sex" in df.columns:
 # Ordem EXATA das features conforme especificado
 ordem_features = [
     "Age",
-    "Sex",
+    "Sex_Male",
     "Ethnicity_White",
     "Ethnicity_Black",
     "Ethnicity_Hispanic",
@@ -105,6 +106,7 @@ ordem_features = [
     "Smoking_Status_Former",
     "Family_History_of_Diabetes",
     "Previous_Gestational_Diabetes"
+    "Sex"
 ]
 
 st.write("entrada", entrada.keys())
