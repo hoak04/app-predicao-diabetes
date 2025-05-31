@@ -28,7 +28,7 @@ entrada = {
     "BMI": bmi,
     "Waist_Circumference": waist,
     "Fasting_Blood_Glucose": glucose,
-    "Sex_Male": 1,
+    "Sex": 1,
     "Alcohol_Consumption_None": 1,
     "Alcohol_Consumption_Moderate": 0,
     "Smoking_Status_Never": 1,
