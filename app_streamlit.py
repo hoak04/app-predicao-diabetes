@@ -113,6 +113,20 @@ st.subheader("🔎 Verificação")
 st.write("Features enviadas:", df.columns.tolist())
 st.write("Valores:", df.values.tolist()[0])
 
+st.write("### 🔍 Verificação de Features")
+st.write("Features que estou enviando:", df.columns.tolist())
+
+if hasattr(modelo, 'feature_names_in_'):
+    st.write("Features que o modelo espera:", modelo.feature_names_in_)
+    
+    # Encontra discrepâncias
+    missing = set(modelo.feature_names_in_) - set(df.columns)
+    extra = set(df.columns) - set(modelo.feature_names_in_)
+    
+    if missing:
+        st.error(f"🚨 Features FALTANDO: {list(missing)}")
+    if extra:
+        st.warning(f"⚠️ Features EXTRAS: {list(extra)}")
 # Previsão
 try:
     dados_normalizados = scaler.transform(df)
