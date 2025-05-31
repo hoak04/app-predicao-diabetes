@@ -80,7 +80,7 @@ st.write("Shape:", df.shape)
 
 # Predição
 try:
-    dados_normalizados = scaler.transform(df)
+    dados_normalizados = scaler.transform(df.values)
     if st.button("🔍 Prever"):
         pred = modelo.predict(dados_normalizados)[0]
         st.success("✅ Diabetes detectado!" if pred == 1 else "🟢 Sem sinais de diabetes.")
