@@ -1,14 +1,15 @@
-
 import streamlit as st
 import pandas as pd
 import joblib
 
+# Carregar modelo e scaler
 modelo = joblib.load("modelo/modelo_randomforest_diabetes.pkl")
 scaler = joblib.load("modelo/scaler.pkl")
 
 st.set_page_config(page_title="Preditor de Diabetes", page_icon="🩺")
 st.title("🩺 Preditor de Diabetes")
 
+# Entradas do usuário
 age = st.slider("Idade", 1, 120, 45)
 bmi = st.number_input("IMC", 10.0, 60.0, 28.5)
 waist = st.number_input("Cintura (cm)", 50.0, 200.0, 90.0)
@@ -23,33 +24,41 @@ calories = st.number_input("Calorias ingeridas", 1000, 5000, 2200)
 bp_sys = st.number_input("Pressão Sistólica", 80, 200, 120)
 bp_dia = st.number_input("Pressão Diastólica", 40, 130, 75)
 
+# Sexo
+gender = st.selectbox("Sexo", ["Masculino", "Feminino"])
+sexo = 1 if gender == "Masculino" else 0
+
+# Criar dicionário com os dados
 entrada = {
     "Age": age,
     "BMI": bmi,
     "Waist_Circumference": waist,
     "Fasting_Blood_Glucose": glucose,
-    "Sex": 1,
-    "Alcohol_Consumption_None": 1,
-    "Alcohol_Consumption_Moderate": 0,
-    "Smoking_Status_Never": 1,
-    "Smoking_Status_Former": 0,
-    "Physical_Activity_Level_Moderate": 1,
-    "Physical_Activity_Level_Low": 0,
-    "Family_History_of_Diabetes": 1,
-    "Previous_Gestational_Diabetes": 0,
+    "Blood_Pressure_Systolic": bp_sys,
+    "Blood_Pressure_Diastolic": bp_dia,
     "Cholesterol_Total": chol_total,
     "Cholesterol_HDL": hdl,
     "Cholesterol_LDL": ldl,
-    "HbA1c": hba1c,
     "GGT": ggt,
     "Serum_Urate": urate,
     "Dietary_Intake_Calories": calories,
+    "Family_History_of_Diabetes": 1,
+    "Previous_Gestational_Diabetes": 0,
+    "Sex": sexo,  # 👈 agora está certo!
     "Ethnicity_White": 1,
     "Ethnicity_Black": 0,
     "Ethnicity_Hispanic": 0,
-    "Blood_Pressure_Diastolic": bp_dia,
-    "Blood_Pressure_Systolic": bp_sys
+    "Physical_Activity_Level_Low": 0,
+    "Physical_Activity_Level_Moderate": 1,
+    "Alcohol_Consumption_None": 1,
+    "Alcohol_Consumption_Moderate": 0,
+    "Smoking_Status_Former": 0,
+    "Smoking_Status_Never": 1
 }
+
+df = pd.DataFrame([entrada])
+
+# Ordem correta das 24 colunas
 colunas_ordenadas = [
     "Age", "BMI", "Waist_Circumference", "Fasting_Blood_Glucose", 
     "Blood_Pressure_Systolic", "Blood_Pressure_Diastolic",
@@ -62,22 +71,15 @@ colunas_ordenadas = [
     "Smoking_Status_Former", "Smoking_Status_Never"
 ]
 
-df = pd.DataFrame([entrada])
-colunas_esperadas = list(entrada.keys())
-df = df.reindex(columns=colunas_esperadas)
+# Reordenar e normalizar
+df = df.reindex(columns=colunas_ordenadas)
 
-colunas_modelo = 24  # valor correto
-colunas_atuais = df.shape[1]
-
-if colunas_atuais > colunas_modelo:
-    st.error(f"⚠️ Você está enviando {colunas_atuais} colunas, mas o modelo espera {colunas_modelo}.")
-    
-# Verificações
+# Verificação
 st.subheader("🔎 Verificação")
 st.write("Colunas enviadas:", df.columns.tolist())
 st.write("Shape:", df.shape)
-st.write(df.columns.tolist())
 
+# Predição
 try:
     dados_normalizados = scaler.transform(df)
     if st.button("🔍 Prever"):
