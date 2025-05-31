@@ -73,7 +73,7 @@ entrada = {
      "Smoking_Status_Never": 1 if smoking == "Never" else 0,  
     "Smoking_Status_Former": 1 if smoking == "Former" else 0,
     "Family_History_of_Diabetes": 1 if family_history else 0,
-    "Previous_Gestational_Diabetes": 1 if gestational_diabetes else 0
+    "Previous_Gestational_Diabetes": 1 if gestational_diabetes else 0,
     "Sex": 1 if sex == "Masculino" else 0,
 }
 df = pd.DataFrame([entrada])
