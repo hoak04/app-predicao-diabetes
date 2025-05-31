@@ -114,8 +114,6 @@ for col in ordem_features:
     if col not in df.columns:
         df[col] = 0  # Preenche com 0 ou outro valor padrão
 
-
-df = df[ordem_feature]
 # Verificação (opcional)
 st.subheader("🔎 Verificação")
 st.write("Features enviadas:", df.columns.tolist())
