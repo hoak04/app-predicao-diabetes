@@ -74,8 +74,8 @@ df = df.reindex(columns=colunas_ordenadas)
 
 # Exibe colunas para depuração (opcional)
 st.subheader("🔎 Verificação")
-st.write("Colunas enviadas:", df.columns.tolist())
-st.write("Shape:", df.shape)
+st.write("Shape do DataFrame:", df.shape)
+st.write("Colunas:", df.columns.tolist())
 
 # Normaliza e prevê
 try:
