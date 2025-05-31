@@ -65,6 +65,7 @@ if colunas_atuais > colunas_modelo:
 st.subheader("🔎 Verificação")
 st.write("Colunas enviadas:", df.columns.tolist())
 st.write("Shape:", df.shape)
+st.write(df.columns.tolist())
 
 try:
     dados_normalizados = scaler.transform(df)
