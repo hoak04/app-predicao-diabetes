@@ -108,7 +108,7 @@ ordem_features = [
 st.write("entrada", entrada.keys())
 st.write("ordem_features", ordem_features)
 # Cria o DataFrame na ordem correta
-df = pd.DataFrame([entrada])[ordem_features]
+df = pd.DataFrame([entrada])
 
 for col in ordem_features:
     if col not in df.columns:
