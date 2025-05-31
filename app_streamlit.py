@@ -77,8 +77,16 @@ df = df.reindex(columns=colunas_ordenadas)
 st.subheader("🔎 Verificação")
 st.write("Colunas enviadas:", df.columns.tolist())
 st.write("Shape:", df.shape)
-colunas_esperadas = modelo_randomforest_diabetes.pkl
-
+colunas_esperadas = modelo.["Age", "BMI", "Waist_Circumference", "Fasting_Blood_Glucose", 
+    "Blood_Pressure_Systolic", "Blood_Pressure_Diastolic",
+    "Cholesterol_Total", "Cholesterol_HDL", "Cholesterol_LDL", "GGT",
+    "Serum_Urate", "Dietary_Intake_Calories", "Family_History_of_Diabetes",
+    "Previous_Gestational_Diabetes", "Sex_Male", 
+    "Ethnicity_White", "Ethnicity_Black", "Ethnicity_Hispanic",
+    "Physical_Activity_Level_Low", "Physical_Activity_Level_Moderate",
+    "Alcohol_Consumption_None", "Alcohol_Consumption_Moderate",
+    "Smoking_Status_Former", "Smoking_Status_Never", "HbA1c"
+]
 st.write("✅ Esperadas pelo modelo:", list(colunas_esperadas))
 st.write("📥 Enviadas:", list(df.columns))
 st.write("❌ Diferença:", list(set(df.columns) - set(colunas_esperadas)))
