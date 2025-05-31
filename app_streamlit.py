@@ -110,12 +110,12 @@ st.write("ordem_features", ordem_features)
 # Cria o DataFrame na ordem correta
 df = pd.DataFrame([entrada])[ordem_features]
 
-for col in orden_features:
+for col in ordem_features:
     if col not in df.columns:
         df[col] = 0  # Preenche com 0 ou outro valor padrão
 
 
-df = df[orden_feature]
+df = df[ordem_feature]
 # Verificação (opcional)
 st.subheader("🔎 Verificação")
 st.write("Features enviadas:", df.columns.tolist())
