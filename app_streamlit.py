@@ -55,6 +55,7 @@ entrada = {
     "HbA1c": hba1c
 }
 
+df = pd.DataFrame([entrada])
 df = df.reindex(columns=colunas_ordenadas)
 
 # Verificar diferença
