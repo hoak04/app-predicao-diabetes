@@ -77,7 +77,7 @@ df = df.reindex(columns=colunas_ordenadas)
 st.subheader("🔎 Verificação")
 st.write("Colunas enviadas:", df.columns.tolist())
 st.write("Shape:", df.shape)
-colunas_esperadas = modelo.feature_names_in_
+colunas_esperadas = modelo_randomforest_diabetes.pkl
 
 st.write("✅ Esperadas pelo modelo:", list(colunas_esperadas))
 st.write("📥 Enviadas:", list(df.columns))
