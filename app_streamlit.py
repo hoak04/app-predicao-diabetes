@@ -47,15 +47,16 @@ try:
     colunas_esperadas = list(modelo.feature_names_in_)
 except AttributeError:
     colunas_esperadas = [
-        "Age", "BMI", "Waist_Circumference", "Fasting_Blood_Glucose", "Sex_Male",
-        "Alcohol_Consumption_None", "Alcohol_Consumption_Moderate",
-        "Smoking_Status_Never", "Smoking_Status_Former",
-        "Physical_Activity_Level_Moderate", "Physical_Activity_Level_Low",
-        "Family_History_of_Diabetes", "Previous_Gestational_Diabetes",
-        "Cholesterol_Total", "Cholesterol_HDL", "Cholesterol_LDL", "HbA1c", "GGT",
-        "Serum_Urate", "Dietary_Intake_Calories", "Ethnicity_White",
-        "Ethnicity_Black", "Ethnicity_Hispanic", "Ethnicity_Asian"
-    ]
+    "Age", "BMI", "Waist_Circumference", "Fasting_Blood_Glucose", "Sex_Male",
+    "Alcohol_Consumption_None", "Alcohol_Consumption_Moderate",
+    "Smoking_Status_Never", "Smoking_Status_Former",
+    "Physical_Activity_Level_Moderate", "Physical_Activity_Level_Low",
+    "Family_History_of_Diabetes", "Previous_Gestational_Diabetes",
+    "Cholesterol_Total", "Cholesterol_HDL", "Cholesterol_LDL", "HbA1c", "GGT",
+    "Serum_Urate", "Dietary_Intake_Calories", "Ethnicity_White",
+    "Ethnicity_Black", "Ethnicity_Hispanic", "Blood_Pressure"
+]
+
 
 df = df.reindex(columns=colunas_esperadas, fill_value=0)
 
