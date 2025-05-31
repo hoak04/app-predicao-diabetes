@@ -54,7 +54,7 @@ entrada = {
     "Alcohol_Consumption_Moderate": 0,
     "Smoking_Status_Former": 0,
     "Smoking_Status_Never": 1,
-    "HbA1c": hba1c,
+    "HbA1c": hba1c
 }
 
 
