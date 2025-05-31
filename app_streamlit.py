@@ -14,7 +14,7 @@ age = st.slider("Idade", 1, 120, 45)
 bmi = st.number_input("IMC", 10.0, 60.0, 28.5)
 waist = st.number_input("Cintura (cm)", 50.0, 200.0, 90.0)
 glucose = st.number_input("Glicose jejum", 50, 300, 100)
-hba1c = st.number_input("HbA1c", 3.0, 15.0, 5.8)
+hba1c = st.number_input("HbA1c", 3.0, 15.0, 5.8)  # ✅ ESSENCIAL
 hdl = st.number_input("Colesterol HDL", 20.0, 100.0, 55.0)
 ldl = st.number_input("Colesterol LDL", 30.0, 200.0, 110.0)
 chol_total = st.number_input("Colesterol Total", 100.0, 300.0, 190.0)
@@ -24,14 +24,10 @@ calories = st.number_input("Calorias ingeridas", 1000, 5000, 2200)
 bp_sys = st.number_input("Pressão Sistólica", 80, 200, 120)
 bp_dia = st.number_input("Pressão Diastólica", 40, 130, 75)
 
-
-# Sexo
 gender = st.selectbox("Sexo", ["Masculino", "Feminino"])
-sexo = 1 if gender == "Masculino" else 0
+sexo_m = 1 if gender == "Masculino" else 0
 
-
-
-# Criar dicionário com os dados
+# Dicionário com as 24 colunas exatas
 entrada = {
     "Age": age,
     "BMI": bmi,
@@ -47,7 +43,7 @@ entrada = {
     "Dietary_Intake_Calories": calories,
     "Family_History_of_Diabetes": 1,
     "Previous_Gestational_Diabetes": 0,
-    "Sex_Male": 1 if gender == "Masculino" else 0,
+    "Sex_Male": sexo_m,  # ✅ correto agora
     "Ethnicity_White": 1,
     "Ethnicity_Black": 0,
     "Ethnicity_Hispanic": 0,
@@ -57,13 +53,12 @@ entrada = {
     "Alcohol_Consumption_Moderate": 0,
     "Smoking_Status_Former": 0,
     "Smoking_Status_Never": 1,
-    "HbA1c": hba1c,
+    "HbA1c": hba1c  # ✅ incluído
 }
-
 
 df = pd.DataFrame([entrada])
 
-# Ordem correta das 24 colunas
+# Reordenação exata das 24 colunas
 colunas_ordenadas = [
     "Age", "BMI", "Waist_Circumference", "Fasting_Blood_Glucose", 
     "Blood_Pressure_Systolic", "Blood_Pressure_Diastolic",
@@ -73,12 +68,9 @@ colunas_ordenadas = [
     "Ethnicity_White", "Ethnicity_Black", "Ethnicity_Hispanic",
     "Physical_Activity_Level_Low", "Physical_Activity_Level_Moderate",
     "Alcohol_Consumption_None", "Alcohol_Consumption_Moderate",
-    "Smoking_Status_Former", "Smoking_Status_Never"
+    "Smoking_Status_Former", "Smoking_Status_Never", "HbA1c"
 ]
 
-
-
-# Reordenar e normalizar
 df = df.reindex(columns=colunas_ordenadas)
 
 # Verificação
@@ -94,4 +86,3 @@ try:
         st.success("✅ Diabetes detectado!" if pred == 1 else "🟢 Sem sinais de diabetes.")
 except Exception as e:
     st.error(f"Erro na predição: {e}")
-
