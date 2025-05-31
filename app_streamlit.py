@@ -105,8 +105,8 @@ ordem_features = [
     "Previous_Gestational_Diabetes"
 ]
 
-st.write("Colunas no dicionário entrada:", entrada.keys())
-st.write("Colunas em orden_features:", orden_features)
+st.write("entrada:", entrada.keys())
+st.write("orden_features:", orden_features)
 # Cria o DataFrame na ordem correta
 df = pd.DataFrame([entrada])[ordem_features]
 
