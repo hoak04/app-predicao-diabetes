@@ -54,7 +54,7 @@ entrada = {
 df = pd.DataFrame([entrada])
 colunas_ordenadas = [
     "Age",
-    "Sex",
+    "Sex_Male",
     "Ethnicity_White",
     "Ethnicity_Black",
     "Ethnicity_Hispanic",
