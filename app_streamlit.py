@@ -50,10 +50,10 @@ smoking_former = 1 if smoking == "Former" else 0
 # Dicionário de entrada na ORDEM CORRETA
 entrada = {
     "Age": age,
-    "Sex": sex_male,  # Assumindo que Sex_Male já foi codificado (1 para masculino)
-    "Ethnicity_White": ethnicity_white,
-    "Ethnicity_Black": ethnicity_black,
-    "Ethnicity_Hispanic": ethnicity_hispanic,
+    "Sex_Male": 1 if sex == "Masculino" else 0  # Assumindo que Sex_Male já foi codificado (1 para masculino)
+    "Ethnicity_White": 1 if ethnicity == "White" else 0,  # Corrigido de "Ethnicity_Write"
+    "Ethnicity_Black": 1 if ethnicity == "Black" else 0,
+    "Ethnicity_Hispanic": 1 if ethnicity == "Hispanic" else 0,
     "BMI": bmi,
     "Waist_Circumference": waist,
     "Fasting_Blood_Glucose": glucose,
@@ -65,13 +65,13 @@ entrada = {
     "Cholesterol_LDL": ldl,
     "GGT": ggt,
     "Serum_Urate": urate,
-    "Physical_Activity_Level_Low": physical_activity_low,
-    "Physical_Activity_Level_Moderate": physical_activity_moderate,
+    "Physical_Activity_Level_Low": 1 if physical_activity == "Low" else 0,
+    "Physical_Activity_Level_Moderate": 1 if physical_activity == "Moderate" else 0,
     "Dietary_Intake_Calories": calories,
-    "Alcohol_Consumption_None": alcohol_none,
-    "Alcohol_Consumption_Moderate": alcohol_moderate,
-    "Smoking_Status_Never": smoking_never,
-    "Smoking_Status_Former": smoking_former,
+    "Alcohol_Consumption_None": 1 if alcohol == "None" else 0,
+    "Alcohol_Consumption_Moderate": 1 if alcohol == "Moderate" else 0,
+     "Smoking_Status_Never": 1 if smoking == "Never" else 0,  
+    "Smoking_Status_Former": 1 if smoking == "Former" else 0,
     "Family_History_of_Diabetes": 1 if family_history else 0,
     "Previous_Gestational_Diabetes": 1 if gestational_diabetes else 0
 }
