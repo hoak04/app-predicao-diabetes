@@ -78,6 +78,8 @@ colunas_ordenadas = [
     "Smoking_Status_Former", "Smoking_Status_Never", "HbA1c"
 ]
 
+
+df = pd.DataFrame([entrada])
 df = df.reindex(columns=colunas_ordenadas)
 
 # Exibe colunas para depuração (opcional)
