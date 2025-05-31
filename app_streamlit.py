@@ -127,6 +127,10 @@ if hasattr(modelo, 'feature_names_in_'):
         st.error(f"🚨 Features FALTANDO: {list(missing)}")
     if extra:
         st.warning(f"⚠️ Features EXTRAS: {list(extra)}")
+
+if hasattr(modelo, 'feature_names_in_'):
+    # Garante a ordem e features corretas
+    df = df.reindex(columns=modelo.feature_names_in_, fill_value=0)
 # Previsão
 try:
     dados_normalizados = scaler.transform(df)
