@@ -55,7 +55,6 @@ entrada = {
     "HbA1c": hba1c
 }
 
-df = pd.DataFrame([entrada])
 df = df.reindex(columns=colunas_ordenadas)
 
 # Verificar diferença
@@ -81,12 +80,6 @@ colunas_ordenadas = [
 
 
 df = pd.DataFrame([entrada])
-df = df.reindex(columns=colunas_ordenadas)
-
-# Exibe colunas para depuração (opcional)
-st.subheader("🔎 Verificação")
-st.write("Shape do DataFrame:", df.shape)
-st.write("Colunas:", df.columns.tolist())
 
 # Normaliza e prevê
 try:
