@@ -115,7 +115,7 @@ for col in orden_features:
         df[col] = 0  # Preenche com 0 ou outro valor padrão
 
 
-df = df[orden_feature
+df = df[orden_feature]
 # Verificação (opcional)
 st.subheader("🔎 Verificação")
 st.write("Features enviadas:", df.columns.tolist())
