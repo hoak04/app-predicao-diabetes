@@ -28,7 +28,7 @@ entrada = {
     "BMI": bmi,
     "Waist_Circumference": waist,
     "Fasting_Blood_Glucose": glucose,
-    "Sex_Male": 1,
+    "Sex": 1,
     "Alcohol_Consumption_None": 1,
     "Alcohol_Consumption_Moderate": 0,
     "Smoking_Status_Never": 1,
@@ -54,7 +54,7 @@ entrada = {
 df = pd.DataFrame([entrada])
 colunas_ordenadas = [
     "Age",
-    "Sex_Male",
+    "Sex",
     "Ethnicity_White",
     "Ethnicity_Black",
     "Ethnicity_Hispanic",
