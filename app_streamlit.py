@@ -23,7 +23,7 @@ urate = st.number_input("Ácido Úrico (Serum Urate)", 1.0, 10.0, 5.2)
 calories = st.number_input("Calorias ingeridas", 1000, 5000, 2200)
 bp_sys = st.number_input("Pressão Sistólica", 80, 200, 120)
 bp_dia = st.number_input("Pressão Diastólica", 40, 130, 75)
-hba1c = st.number_input("HbA1c", 3.0, 15.0, 5.8)
+
 
 # Sexo
 gender = st.selectbox("Sexo", ["Masculino", "Feminino"])
