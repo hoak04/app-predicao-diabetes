@@ -95,6 +95,8 @@ st.write("📥 Enviadas:", list(df.columns))
 st.write("❌ Diferença:", list(set(df.columns) - set(colunas_esperadas)))
 st.write("🔢 Número final de colunas:", df.shape[1])
 st.write("⚙️ Scaler espera:", scaler.n_features_in_)
+st.write("scaler.features:", scaler.feature_names_in_)  # se disponível
+
 
 # Predição
 try:
