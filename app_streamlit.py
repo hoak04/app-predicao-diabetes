@@ -1,8 +1,4 @@
-diff --git a/app_streamlit.py b/app_streamlit.py
-index 79bb9437fa6b74a745b911d29f2b331f4688bc06..1bbc1acd32eaecd8bbfedd6932ed3f7f94512a5c 100644
---- a/app_streamlit.py
-+++ b/app_streamlit.py
-@@ -5,104 +5,104 @@ import joblib
+
  # Carregar modelo e scaler
  modelo = joblib.load("modelo/modelo_randomforest_diabetes.pkl")
  scaler = joblib.load("modelo/scaler.pkl")
