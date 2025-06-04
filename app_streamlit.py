@@ -27,7 +27,7 @@ bp_dia = st.number_input("Pressão Diastólica", 40, 130, 75)
 gender = st.selectbox("Sexo", ["Masculino", "Feminino"])
 sexo_m = 1 if gender == "Masculino" else 0
 
-# Dicionário com as 24 colunas exatas
+# Dicionário com as 25 colunas exatas
 entrada = {
     "Age": age,
     "BMI": bmi,
@@ -58,17 +58,17 @@ entrada = {
 
 df = pd.DataFrame([entrada])
 
-# Reordenação exata das 24 colunas
+# Reordenação exata das 25 colunas na ordem usada durante o treinamento
 colunas_ordenadas = [
-    "Age", "BMI", "Waist_Circumference", "Fasting_Blood_Glucose", 
+    "Age", "BMI", "Waist_Circumference", "Fasting_Blood_Glucose", "HbA1c",
     "Blood_Pressure_Systolic", "Blood_Pressure_Diastolic",
     "Cholesterol_Total", "Cholesterol_HDL", "Cholesterol_LDL", "GGT",
     "Serum_Urate", "Dietary_Intake_Calories", "Family_History_of_Diabetes",
-    "Previous_Gestational_Diabetes", "Sex_Male", 
-    "Ethnicity_White", "Ethnicity_Black", "Ethnicity_Hispanic",
+    "Previous_Gestational_Diabetes", "Sex_Male",
+    "Ethnicity_Black", "Ethnicity_Hispanic", "Ethnicity_White",
     "Physical_Activity_Level_Low", "Physical_Activity_Level_Moderate",
-    "Alcohol_Consumption_None", "Alcohol_Consumption_Moderate",
-    "Smoking_Status_Former", "Smoking_Status_Never", "HbA1c"
+    "Alcohol_Consumption_Moderate", "Alcohol_Consumption_None",
+    "Smoking_Status_Former", "Smoking_Status_Never"
 ]
 
 df = df.reindex(columns=colunas_ordenadas)
@@ -78,15 +78,15 @@ st.subheader("🔎 Verificação")
 st.write("Colunas enviadas:", df.columns.tolist())
 st.write("Shape:", df.shape)
 colunas_esperadas = [
-    "Age", "BMI", "Waist_Circumference", "Fasting_Blood_Glucose",
+    "Age", "BMI", "Waist_Circumference", "Fasting_Blood_Glucose", "HbA1c",
     "Blood_Pressure_Systolic", "Blood_Pressure_Diastolic",
     "Cholesterol_Total", "Cholesterol_HDL", "Cholesterol_LDL", "GGT",
     "Serum_Urate", "Dietary_Intake_Calories", "Family_History_of_Diabetes",
     "Previous_Gestational_Diabetes", "Sex_Male",
-    "Ethnicity_White", "Ethnicity_Black", "Ethnicity_Hispanic",
+    "Ethnicity_Black", "Ethnicity_Hispanic", "Ethnicity_White",
     "Physical_Activity_Level_Low", "Physical_Activity_Level_Moderate",
-    "Alcohol_Consumption_None", "Alcohol_Consumption_Moderate",
-    "Smoking_Status_Former", "Smoking_Status_Never", "HbA1c"  # ✅ incluído
+    "Alcohol_Consumption_Moderate", "Alcohol_Consumption_None",
+    "Smoking_Status_Former", "Smoking_Status_Never"
 ]
 
 
