@@ -48,7 +48,7 @@ entrada = {
     "Ethnicity_Black": 0,
     "Ethnicity_Hispanic": 0,
     "Physical_Activity_Level_Low": 0,
-    "Physical_Activity_Level_Moderate": 1,
+    " Physical_Activity_Level_Moderate": 1,
     "Alcohol_Consumption_None": 1,
     "Alcohol_Consumption_Moderate": 0,
     "Smoking_Status_Former": 0,
@@ -66,7 +66,7 @@ colunas_ordenadas = [
     "Serum_Urate", "Dietary_Intake_Calories", "Family_History_of_Diabetes",
     "Previous_Gestational_Diabetes", "Sex_Male",
     "Ethnicity_Black", "Ethnicity_Hispanic", "Ethnicity_White",
-    "Physical_Activity_Level_Low", "Physical_Activity_Level_Moderate",
+    "Physical_Activity_Level_Low", " Physical_Activity_Level_Moderate",
     "Alcohol_Consumption_Moderate", "Alcohol_Consumption_None",
     "Smoking_Status_Former", "Smoking_Status_Never"
 ]
@@ -84,7 +84,7 @@ colunas_esperadas = [
     "Serum_Urate", "Dietary_Intake_Calories", "Family_History_of_Diabetes",
     "Previous_Gestational_Diabetes", "Sex_Male",
     "Ethnicity_Black", "Ethnicity_Hispanic", "Ethnicity_White",
-    "Physical_Activity_Level_Low", "Physical_Activity_Level_Moderate",
+    "Physical_Activity_Level_Low", " Physical_Activity_Level_Moderate",
     "Alcohol_Consumption_Moderate", "Alcohol_Consumption_None",
     "Smoking_Status_Former", "Smoking_Status_Never"
 ]
